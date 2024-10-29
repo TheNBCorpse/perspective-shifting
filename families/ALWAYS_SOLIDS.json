@@ -1,0 +1,11 @@
+{
+	"name": "ALWAYS_SOLIDS",
+	"plugin-id": "Shape3D",
+	"sid": 961680754253730,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"obj_testbox1"
+	]
+}

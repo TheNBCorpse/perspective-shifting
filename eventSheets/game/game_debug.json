@@ -1,0 +1,128 @@
+{
+	"name": "game_debug",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 422373674511128
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 449271457716081,
+					"parameters": {
+						"first-value": "LayoutName",
+						"comparison": 0,
+						"second-value": "\"test_debug1\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "text_debug",
+					"sid": 659997657704111,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "text_debug",
+					"sid": 663271074841445,
+					"parameters": {
+						"text": "info.FramesPerSecond & \" FPS/\" & info.TicksPerSecond & \" TPS\" & newline & roundToDp(cpuutilisation, 1) & \"% cpu/ \" & roundToDp(gpuutilisation, 1) & \"% gpu\" & newline & info.RendererDetail & \" (\" & info.Renderer & \", \" & browser.Platform & \")\" & newline & browser.UserAgent & newline & info.HardwareConcurrency & \" threads, \" & info.DeviceMemory & \" gb ram\" & newline & info.ScreenWidth & \" x \" & info.ScreenHeight & \" screen, \" & info.CanvasDeviceWidth & \" x \" & info.CanvasDeviceHeight & \" canvas\" & newline & info.WindowOuterWidth & \" x \" & info.WindowOuterHeight & \" window, \" & info.WindowInnerWidth & \" x \" & info.WindowInnerHeight & \" client\" & newline & keyboard.LastKeyCode"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "player_collision",
+					"sid": 814485583366195,
+					"parameters": {
+						"visibility": "visible"
+					}
+				}
+			],
+			"sid": 192225258194177,
+			"isOrBlock": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "keyboard",
+					"sid": 422968552172274,
+					"parameters": {
+						"key": 32
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "start-recording-2",
+					"objectClass": "debugrecording",
+					"sid": 683437978938919,
+					"parameters": {
+						"container": "webm",
+						"video-codec": "auto",
+						"framerate": "60",
+						"audio-codec": "none",
+						"quality-kbps": "24000"
+					}
+				}
+			],
+			"sid": 781779194034449,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "keyboard",
+					"sid": 542779358712078,
+					"parameters": {
+						"key": 13
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-recording",
+					"objectClass": "debugrecording",
+					"sid": 641130708848470
+				}
+			],
+			"sid": 526187754720918,
+			"disabled": true
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-recording-ready",
+					"objectClass": "debugrecording",
+					"sid": 482354664536307
+				}
+			],
+			"actions": [
+				{
+					"id": "invoke-download",
+					"objectClass": "browser",
+					"sid": 221227738030279,
+					"parameters": {
+						"url": "debugrecording.RecordingURL",
+						"filename": "\"recording\""
+					}
+				}
+			],
+			"sid": 820925862790923,
+			"disabled": true
+		}
+	],
+	"sid": 128463509389389
+}

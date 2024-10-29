@@ -1,0 +1,12 @@
+{
+	"name": "debugrecording",
+	"plugin-id": "GameRecorder",
+	"sid": 829337617771246,
+	"singleglobal-inst": {
+		"type": "debugrecording",
+		"properties": {},
+		"uid": 12,
+		"sid": 574444299182424,
+		"tags": ""
+	}
+}

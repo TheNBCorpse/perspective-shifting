@@ -1,0 +1,14 @@
+{
+	"name": "game_main",
+	"events": [
+		{
+			"eventType": "include",
+			"includeSheet": "game_debug"
+		},
+		{
+			"eventType": "include",
+			"includeSheet": "game_controls"
+		}
+	],
+	"sid": 442937370725169
+}

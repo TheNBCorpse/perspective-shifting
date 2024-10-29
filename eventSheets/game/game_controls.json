@@ -1,0 +1,1577 @@
+{
+	"name": "game_controls",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "key_up",
+			"type": "number",
+			"initialValue": "87",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 155753699349057
+		},
+		{
+			"eventType": "variable",
+			"name": "key_left",
+			"type": "number",
+			"initialValue": "65",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 113208795359617
+		},
+		{
+			"eventType": "variable",
+			"name": "key_down",
+			"type": "number",
+			"initialValue": "83",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 985687866942633
+		},
+		{
+			"eventType": "variable",
+			"name": "key_right",
+			"type": "number",
+			"initialValue": "68",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 754349060419095
+		},
+		{
+			"eventType": "variable",
+			"name": "mouse_sensitivity",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 314668682285887
+		},
+		{
+			"eventType": "comment",
+			"text": "-----------------------------------------------------------------------------------"
+		},
+		{
+			"eventType": "variable",
+			"name": "mode",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "0 2d 1 3d 2 cutscene",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 706979726779329
+		},
+		{
+			"eventType": "variable",
+			"name": "speed",
+			"type": "number",
+			"initialValue": "200",
+			"comment": "subject to deltatime",
+			"isStatic": true,
+			"isConstant": false,
+			"sid": 917287440732078
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "movement (2d)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 820616423329149,
+							"parameters": {
+								"keycode": "key_up"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 299943676818289,
+							"parameters": {
+								"keycode": "key_down"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-y",
+							"objectClass": "player_collision",
+							"sid": 420819307892743,
+							"parameters": {
+								"y": "Self.Y - speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid",
+							"objectClass": "player_collision",
+							"sid": 353224884020636,
+							"behaviorType": "Movement",
+							"parameters": {
+								"direction": "down"
+							}
+						}
+					],
+					"sid": 890759514443497
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 520493125842885,
+							"parameters": {
+								"keycode": "key_left"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 436255551017552,
+							"parameters": {
+								"keycode": "key_right"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-x",
+							"objectClass": "player_collision",
+							"sid": 443868215893726,
+							"parameters": {
+								"x": "Self.X - speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid",
+							"objectClass": "player_collision",
+							"sid": 635959181390433,
+							"behaviorType": "Movement",
+							"parameters": {
+								"direction": "right"
+							}
+						}
+					],
+					"sid": 833416849128051
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 467057792297487,
+							"parameters": {
+								"keycode": "key_down"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 805560952452513,
+							"parameters": {
+								"keycode": "key_up"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-y",
+							"objectClass": "player_collision",
+							"sid": 380518845145526,
+							"parameters": {
+								"y": "Self.Y + speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid",
+							"objectClass": "player_collision",
+							"sid": 338064712218960,
+							"behaviorType": "Movement",
+							"parameters": {
+								"direction": "up"
+							}
+						}
+					],
+					"sid": 456114645028400
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 657926879221127,
+							"parameters": {
+								"keycode": "key_right"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 618121445220528,
+							"parameters": {
+								"keycode": "key_left"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-x",
+							"objectClass": "player_collision",
+							"sid": 566315014454850,
+							"parameters": {
+								"x": "Self.X + speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid",
+							"objectClass": "player_collision",
+							"sid": 122798566939057,
+							"behaviorType": "Movement",
+							"parameters": {
+								"direction": "left"
+							}
+						}
+					],
+					"sid": 352534933993933
+				}
+			],
+			"sid": 483157101748606
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "movement (3d)",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "Position camera",
+					"functionDescription": "Sets the initial camera angle.",
+					"functionCategory": "Camera",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "X",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 505322107025297
+						},
+						{
+							"name": "Y",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 887673902475304
+						},
+						{
+							"name": "Z",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"sid": 452019956905771
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "camera",
+							"sid": 180596136380903,
+							"disabled": true,
+							"parameters": {
+								"x": "X",
+								"y": "Y",
+								"z": "Z",
+								"which": "look"
+							}
+						},
+						{
+							"id": "rotate-camera",
+							"objectClass": "camera",
+							"sid": 808685611108892,
+							"parameters": {
+								"rotate-x": "anglelerp(angle(camera.CameraX, camera.CameraY, camera.LookX, camera.LookY), angle(camera.CameraX, camera.CameraY, X, Y), 360)",
+								"rotate-y": "0",
+								"min-polar-angle": "0",
+								"max-polar-angle": "180"
+							}
+						}
+					],
+					"sid": 492568504339596,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 888103681165263
+						}
+					],
+					"actions": [
+						{
+							"id": "rotate-camera",
+							"objectClass": "camera",
+							"sid": 668412223742153,
+							"parameters": {
+								"rotate-x": "player_camerarotation.Angle",
+								"rotate-y": "0",
+								"min-polar-angle": "10",
+								"max-polar-angle": "170"
+							}
+						}
+					],
+					"sid": 975037998191861
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-movement",
+							"objectClass": "mouse",
+							"sid": 552825828336197
+						}
+					],
+					"actions": [
+						{
+							"id": "rotate-camera",
+							"objectClass": "camera",
+							"sid": 772942837222617,
+							"parameters": {
+								"rotate-x": "(mouse.MovementX * 0.15) * mouse_sensitivity",
+								"rotate-y": "(mouse.MovementY * 0.15) * mouse_sensitivity",
+								"min-polar-angle": "10",
+								"max-polar-angle": "170"
+							}
+						}
+					],
+					"sid": 610971393206100
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 864495687908465,
+							"parameters": {
+								"keycode": "key_up"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 318308311581643,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 971507489987429,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_down"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 117435914948336,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_right"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 630579955901877,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "player_collision",
+							"sid": 414499649909950,
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1))",
+								"distance": "speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 690744306956952,
+							"disabled": true,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, camera.LookX, camera.LookY) + 180"
+							}
+						}
+					],
+					"sid": 158761138438013
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 318672327700116,
+							"parameters": {
+								"keycode": "key_left"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 862944254571010,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_up"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 236733632314790,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_down"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 185140195064259,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_right"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 161983974772657,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "player_collision",
+							"sid": 829353889844257,
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1)) + 270",
+								"distance": "speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 139652847045281,
+							"disabled": true,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, camera.LookX, camera.LookY) + 90"
+							}
+						}
+					],
+					"sid": 653068827535401
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 892339683699845,
+							"parameters": {
+								"keycode": "key_down"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 444351922889095,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_up"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 212407760013752,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 989465002791644,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_right"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 281061682117039,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "player_collision",
+							"sid": 850947445057935,
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1)) + 180",
+								"distance": "speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 742848631540793,
+							"disabled": true,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, camera.LookX, camera.LookY)"
+							}
+						}
+					],
+					"sid": 520403172774013
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 525264531328413,
+							"parameters": {
+								"keycode": "key_right"
+							}
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 493078720138136,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_up"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 869876784085844,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_left"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 431270935261698,
+							"disabled": true,
+							"parameters": {
+								"keycode": "key_down"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 828778488766008,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "move-at-angle",
+							"objectClass": "player_collision",
+							"sid": 677308607963459,
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1)) + 90",
+								"distance": "speed * dt"
+							}
+						},
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 146956493439383,
+							"disabled": true,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, camera.LookX, camera.LookY) + 270"
+							}
+						}
+					],
+					"sid": 275773266285336
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 666667321783810,
+							"parameters": {
+								"keycode": "key_up"
+							}
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 182755300371397,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 821212742543063,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1)) + 180"
+							}
+						}
+					],
+					"sid": 588029557014078
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 688862642432730,
+							"parameters": {
+								"keycode": "key_left"
+							}
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 292835809157674,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 843820162413285,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1)) + 90"
+							}
+						}
+					],
+					"sid": 191763419781254
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 223561414597283,
+							"parameters": {
+								"keycode": "key_down"
+							}
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 761261468164564,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 356225209506886,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1))"
+							}
+						}
+					],
+					"sid": 123223337672574
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-code-is-down",
+							"objectClass": "keyboard",
+							"sid": 792691734034427,
+							"parameters": {
+								"keycode": "key_right"
+							}
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "player_collision",
+							"sid": 932737006066466,
+							"parameters": {
+								"object": "ALWAYS_SOLIDS"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "push-out-solid-at-angle",
+							"objectClass": "player_collision",
+							"sid": 399449905647699,
+							"behaviorType": "Movement",
+							"parameters": {
+								"angle": "angle(Self.X, Self.Y, player_camerarotation.ImagePointX(1), player_camerarotation.ImagePointY(1)) + 270"
+							}
+						}
+					],
+					"sid": 758933966772867
+				}
+			],
+			"sid": 433455688703619
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "inputs",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-any-click",
+							"objectClass": "mouse",
+							"sid": 803949849546630
+						}
+					],
+					"actions": [
+						{
+							"id": "request-pointer-lock",
+							"objectClass": "mouse",
+							"sid": 521093590301083,
+							"parameters": {
+								"unadjusted-movement": false
+							}
+						}
+					],
+					"sid": 767318834935797,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 285124914443456
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "player_camerarotation",
+							"sid": 784282888154663,
+							"parameters": {
+								"object": "player_collision",
+								"image-point-optional": "0"
+							}
+						},
+						{
+							"id": "add-child",
+							"objectClass": "player_collision",
+							"sid": 945616855511229,
+							"parameters": {
+								"child": "player_camerarotation",
+								"transform-x": true,
+								"transform-y": true,
+								"transform-w": false,
+								"transform-h": false,
+								"transform-a": false,
+								"transform-o": false,
+								"transform-z-elevation": true,
+								"transform-visibility": true,
+								"destroy-with-parent": true
+							}
+						}
+					],
+					"sid": 925696049633779
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 186237377168536
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-toward-position",
+							"objectClass": "player_camerarotation",
+							"sid": 926276931059298,
+							"disabled": true,
+							"parameters": {
+								"x": "mouse.X",
+								"y": "mouse.Y"
+							}
+						}
+					],
+					"sid": 196758310516641
+				},
+				{
+					"eventType": "variable",
+					"name": "transition_speed",
+					"type": "number",
+					"initialValue": "0.4",
+					"comment": "time in seconds",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 270467961878165
+				},
+				{
+					"eventType": "variable",
+					"name": "onetimex",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "deprecated",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 619014473123417
+				},
+				{
+					"eventType": "variable",
+					"name": "onetimey",
+					"type": "number",
+					"initialValue": "0",
+					"comment": "deprecated",
+					"isStatic": true,
+					"isConstant": false,
+					"sid": 499626754648717
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-click",
+							"objectClass": "mouse",
+							"sid": 399490357514018,
+							"parameters": {
+								"mouse-button": "middle",
+								"click-type": "clicked"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 453571442751613,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 550730060434360,
+									"parameters": {
+										"variable": "mode",
+										"comparison": 0,
+										"value": "0"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 386328758857426,
+									"parameters": {
+										"variable": "mode",
+										"value": "2"
+									}
+								},
+								{
+									"id": "request-pointer-lock",
+									"objectClass": "mouse",
+									"sid": 226153563217111,
+									"parameters": {
+										"unadjusted-movement": false
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 478178578109793,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"x\"",
+										"start-value": "camera.CameraX",
+										"end-value": "player_collision.X",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 798715969336081,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"y\"",
+										"start-value": "camera.CameraY",
+										"end-value": "player_collision.Y",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 437409207053103,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"z\"",
+										"start-value": "1303.7",
+										"end-value": "player_collision.ZElevation + 40",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 625917831329477,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"lookx\"",
+										"start-value": "camera.LookX",
+										"end-value": "player_camerarotation.ImagePointX(1)",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 556777387537195,
+									"disabled": true,
+									"parameters": {
+										"variable": "onetimex",
+										"value": "mouse.X"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 629278863059108,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"looky\"",
+										"start-value": "camera.LookY",
+										"end-value": "player_camerarotation.ImagePointY(1)",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 538547942545369,
+									"disabled": true,
+									"parameters": {
+										"variable": "onetimey",
+										"value": "mouse.Y"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 384214236808945,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"lookz\"",
+										"start-value": "camera.LookZ",
+										"end-value": "player_collision.ZElevation + 40",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 884739160376351,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"vectory\"",
+										"start-value": "1",
+										"end-value": "0",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 695683589265114,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"vectorz\"",
+										"start-value": "0",
+										"end-value": "1",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 434616610362280
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 375522330858902,
+									"parameters": {
+										"variable": "mode",
+										"value": "1"
+									}
+								},
+								{
+									"callFunction": "Position camera",
+									"sid": 220687061901336,
+									"disabled": true,
+									"parameters": [
+										"onetimex",
+										"onetimey",
+										"player_collision.ZElevation + 40"
+									]
+								},
+								{
+									"id": "rotate-camera",
+									"objectClass": "camera",
+									"sid": 598862185401785,
+									"disabled": true,
+									"parameters": {
+										"rotate-x": "angle(camera.CameraX, camera.CameraY, onetimex, onetimey) - angle(camera.CameraX, camera.CameraY, camera.LookX, camera.LookY)",
+										"rotate-y": "0",
+										"min-polar-angle": "0",
+										"max-polar-angle": "180"
+									}
+								}
+							],
+							"sid": 475009902926733
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 600273300484363,
+									"parameters": {
+										"variable": "mode",
+										"comparison": 0,
+										"value": "1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 935831894888324,
+									"parameters": {
+										"variable": "mode",
+										"value": "2"
+									}
+								},
+								{
+									"id": "release-pointer-lock",
+									"objectClass": "mouse",
+									"sid": 331055247606036
+								},
+								{
+									"id": "rotate-camera",
+									"objectClass": "camera",
+									"sid": 975559517971644,
+									"parameters": {
+										"rotate-x": "360 - camera.CameraXRotation",
+										"rotate-y": "90 - camera.CameraYRotation",
+										"min-polar-angle": "0",
+										"max-polar-angle": "180"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 889244738941620,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"x\"",
+										"start-value": "camera.CameraX",
+										"end-value": "player_collision.X",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 664435065278294,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"y\"",
+										"start-value": "camera.CameraY",
+										"end-value": "player_collision.Y",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 409740310910538,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"z\"",
+										"start-value": "camera.CameraZ",
+										"end-value": "1303.7",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 599798620137581,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"lookx\"",
+										"start-value": "player_camerarotation.ImagePointX(1)",
+										"end-value": "player_collision.X",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 837734578300161,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"looky\"",
+										"start-value": "player_camerarotation.ImagePointY(1)",
+										"end-value": "player_collision.Y",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 377443931396330,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"lookz\"",
+										"start-value": "camera.LookZ",
+										"end-value": "0",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 211849303402750,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"vectory\"",
+										"start-value": "0",
+										"end-value": "1",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "tween-value",
+									"objectClass": "player_collision",
+									"sid": 890436827319853,
+									"behaviorType": "TweenCamera",
+									"parameters": {
+										"tags": "\"vectorz\"",
+										"start-value": "1",
+										"end-value": "0",
+										"time": "transition_speed",
+										"ease": "default",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no",
+										"repeat-count": "1"
+									}
+								},
+								{
+									"id": "wait-for-previous-actions",
+									"objectClass": "System",
+									"sid": 148854766910288
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 524550879543371,
+									"parameters": {
+										"variable": "mode",
+										"value": "0"
+									}
+								}
+							],
+							"sid": 489774881038733
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-playing",
+							"objectClass": "player_collision",
+							"sid": 613531067242488,
+							"behaviorType": "TweenCamera",
+							"parameters": {
+								"tags": "\"z\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "look-at-position",
+							"objectClass": "camera",
+							"sid": 111222346070964,
+							"parameters": {
+								"cam-x": "player_collision.TweenCamera.Value(\"x\")",
+								"cam-y": "player_collision.TweenCamera.Value(\"y\")",
+								"cam-z": "player_collision.TweenCamera.Value(\"z\")",
+								"look-x": "player_collision.TweenCamera.Value(\"lookx\")",
+								"look-y": "player_collision.TweenCamera.Value(\"looky\")",
+								"look-z": "player_collision.TweenCamera.Value(\"lookz\")",
+								"up-x": "0",
+								"up-y": "player_collision.TweenCamera.Value(\"vectory\")\n",
+								"up-z": "player_collision.TweenCamera.Value(\"vectorz\")"
+							}
+						}
+					],
+					"sid": 605804014310014
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 691773646129337,
+							"parameters": {
+								"variable": "mode",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 823210667804993,
+							"parameters": {
+								"group-name": "\"movement (2d)\"",
+								"state": "activated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 644990171400446,
+							"parameters": {
+								"group-name": "\"movement (3d)\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "look-at-position",
+							"objectClass": "camera",
+							"sid": 129295191991475,
+							"parameters": {
+								"cam-x": "player_collision.X",
+								"cam-y": "player_collision.Y",
+								"cam-z": "1303.7",
+								"look-x": "player_collision.X",
+								"look-y": "player_collision.Y",
+								"look-z": "0",
+								"up-x": "0",
+								"up-y": "1",
+								"up-z": "0"
+							}
+						},
+						{
+							"id": "set-angle-toward-position",
+							"objectClass": "player_camerarotation",
+							"sid": 528876179543381,
+							"parameters": {
+								"x": "mouse.X",
+								"y": "mouse.Y"
+							}
+						}
+					],
+					"sid": 302410974462159
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 244706742539939,
+							"parameters": {
+								"variable": "mode",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 566524968912117,
+							"parameters": {
+								"group-name": "\"movement (2d)\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 139254763327926,
+							"parameters": {
+								"group-name": "\"movement (3d)\"",
+								"state": "activated"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "camera",
+							"sid": 215532534771400,
+							"parameters": {
+								"x": "player_collision.X",
+								"y": "player_collision.Y",
+								"z": "player_collision.ZElevation + 40",
+								"which": "camera"
+							}
+						},
+						{
+							"id": "set-angle-toward-position",
+							"objectClass": "player_camerarotation",
+							"sid": 808590339647471,
+							"parameters": {
+								"x": "camera.LookX",
+								"y": "camera.LookY"
+							}
+						}
+					],
+					"sid": 716851955956423,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 670959617763985
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Position camera",
+									"sid": 557472862753003,
+									"parameters": [
+										"onetimex",
+										"onetimey",
+										"player_collision.ZElevation + 40"
+									]
+								}
+							],
+							"sid": 957796866802243,
+							"disabled": true
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-eventvar",
+							"objectClass": "System",
+							"sid": 688967607495768,
+							"parameters": {
+								"variable": "mode",
+								"comparison": 0,
+								"value": "2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 331118857226360,
+							"parameters": {
+								"group-name": "\"movement (2d)\"",
+								"state": "deactivated"
+							}
+						},
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 582765337348926,
+							"parameters": {
+								"group-name": "\"movement (3d)\"",
+								"state": "deactivated"
+							}
+						}
+					],
+					"sid": 149917014596078
+				}
+			],
+			"sid": 612042420523508
+		}
+	],
+	"sid": 160483000909091
+}
